@@ -361,69 +361,6 @@ export interface MessageSource {
     'source': string;
 }
 /**
- * 
- * @export
- * @interface ResponseCreateSource
- */
-export interface ResponseCreateSource {
-    /**
-     * Unique identifier for the application this source is associated with.
-     * @type {string}
-     * @memberof ResponseCreateSource
-     */
-    'application_id': string;
-    /**
-     * Source content. This can be text, a list of URLs to crawl, or a file.
-     * @type {any}
-     * @memberof ResponseCreateSource
-     */
-    'content': any;
-    /**
-     * Timestamp of when the source was created.
-     * @type {string}
-     * @memberof ResponseCreateSource
-     */
-    'created_at': string;
-    /**
-     * 
-     * @type {EmbedStatus}
-     * @memberof ResponseCreateSource
-     */
-    'embed_status'?: EmbedStatus;
-    /**
-     * Optional message associated with the `embed_status`. If there is an error processing the source, this field will contain the error message.
-     * @type {string}
-     * @memberof ResponseCreateSource
-     */
-    'embed_status_message'?: string;
-    /**
-     * Unique identifier for the source
-     * @type {string}
-     * @memberof ResponseCreateSource
-     */
-    'id': string;
-    /**
-     * Name of the source. Used when displaying where information came from in a conversation.
-     * @type {string}
-     * @memberof ResponseCreateSource
-     */
-    'name': string;
-    /**
-     * Type of source. Used to determine how to process the source.
-     * @type {string}
-     * @memberof ResponseCreateSource
-     */
-    'type': string;
-    /**
-     * Timestamp of when the source was last updated
-     * @type {string}
-     * @memberof ResponseCreateSource
-     */
-    'updated_at': string;
-}
-
-
-/**
  * Represents data associated with an application (file, URL, raw text, etc.) Each source gets processed, embedded, and stored in Pinecone
  * @export
  * @interface Source
@@ -486,37 +423,6 @@ export interface Source {
 }
 
 
-/**
- * 
- * @export
- * @interface Sources
- */
-export interface Sources {
-    /**
-     * Unique identifier for the application this source should be associated with.
-     * @type {string}
-     * @memberof Sources
-     */
-    'application_id': string;
-    /**
-     * Source content. This can be text, a list of URLs to crawl, or a file.
-     * @type {any}
-     * @memberof Sources
-     */
-    'content': any;
-    /**
-     * Name of the source. Used when displaying where information came from in a conversation.
-     * @type {string}
-     * @memberof Sources
-     */
-    'name': string;
-    /**
-     * Type of source. Used to determine how to process the source.
-     * @type {string}
-     * @memberof Sources
-     */
-    'type': string;
-}
 /**
  * Application update model, represents the updatable fields of an application
  * @export
@@ -668,13 +574,13 @@ export const ChariotApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Creates a new source. You can create multiple sources at once by passing an array of sources.
          * @summary Create source
-         * @param {Sources} sources 
+         * @param {CreateSource} createSource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createSource: async (sources: Sources, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'sources' is not null or undefined
-            assertParamExists('createSource', 'sources', sources)
+        createSource: async (createSource: CreateSource, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createSource' is not null or undefined
+            assertParamExists('createSource', 'createSource', createSource)
             const localVarPath = `/sources`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -694,7 +600,7 @@ export const ChariotApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(sources, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createSource, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1247,12 +1153,12 @@ export const ChariotApiFp = function(configuration?: Configuration) {
         /**
          * Creates a new source. You can create multiple sources at once by passing an array of sources.
          * @summary Create source
-         * @param {Sources} sources 
+         * @param {CreateSource} createSource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createSource(sources: Sources, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<ResponseCreateSource>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createSource(sources, options);
+        async createSource(createSource: CreateSource, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Source>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createSource(createSource, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1453,12 +1359,12 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
         /**
          * Creates a new source. You can create multiple sources at once by passing an array of sources.
          * @summary Create source
-         * @param {Sources} sources 
+         * @param {CreateSource} createSource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createSource(sources: Sources, options?: any): Promise<ResponseCreateSource> {
-            return localVarFp.createSource(sources, options).then((request) => request(axios, basePath));
+        createSource(createSource: CreateSource, options?: any): Promise<Source> {
+            return localVarFp.createSource(createSource, options).then((request) => request(axios, basePath));
         },
         /**
          * Permanently deletes an application and all related conversations and sources. This cannot be undone.
@@ -1646,13 +1552,13 @@ export class ChariotApi extends BaseAPI {
     /**
      * Creates a new source. You can create multiple sources at once by passing an array of sources.
      * @summary Create source
-     * @param {Sources} sources 
+     * @param {CreateSource} createSource 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    public createSource(sources: Sources, options?: AxiosRequestConfig) {
-        return ChariotApiFp(this.configuration).createSource(sources, options).then((request) => request(this.axios, this.basePath));
+    public createSource(createSource: CreateSource, options?: AxiosRequestConfig) {
+        return ChariotApiFp(this.configuration).createSource(createSource, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -118,13 +118,13 @@ exports.ChariotApiAxiosParamCreator = function (configuration) {
         /**
          * Creates a new source. You can create multiple sources at once by passing an array of sources.
          * @summary Create source
-         * @param {Sources} sources
+         * @param {CreateSource} createSource
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createSource: (sources, options = {}) => __awaiter(this, void 0, void 0, function* () {
-            // verify required parameter 'sources' is not null or undefined
-            common_1.assertParamExists('createSource', 'sources', sources);
+        createSource: (createSource, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'createSource' is not null or undefined
+            common_1.assertParamExists('createSource', 'createSource', createSource);
             const localVarPath = `/sources`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
@@ -139,7 +139,7 @@ exports.ChariotApiAxiosParamCreator = function (configuration) {
             common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = common_1.serializeDataIfNeeded(sources, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = common_1.serializeDataIfNeeded(createSource, localVarRequestOptions, configuration);
             return {
                 url: common_1.toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -616,13 +616,13 @@ exports.ChariotApiFp = function (configuration) {
         /**
          * Creates a new source. You can create multiple sources at once by passing an array of sources.
          * @summary Create source
-         * @param {Sources} sources
+         * @param {CreateSource} createSource
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createSource(sources, options) {
+        createSource(createSource, options) {
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.createSource(sources, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.createSource(createSource, options);
                 return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
             });
         },
@@ -853,12 +853,12 @@ exports.ChariotApiFactory = function (apiKey, basePath, axios) {
         /**
          * Creates a new source. You can create multiple sources at once by passing an array of sources.
          * @summary Create source
-         * @param {Sources} sources
+         * @param {CreateSource} createSource
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createSource(sources, options) {
-            return localVarFp.createSource(sources, options).then((request) => request(axios, basePath));
+        createSource(createSource, options) {
+            return localVarFp.createSource(createSource, options).then((request) => request(axios, basePath));
         },
         /**
          * Permanently deletes an application and all related conversations and sources. This cannot be undone.
@@ -1043,13 +1043,13 @@ class ChariotApi extends base_1.BaseAPI {
     /**
      * Creates a new source. You can create multiple sources at once by passing an array of sources.
      * @summary Create source
-     * @param {Sources} sources
+     * @param {CreateSource} createSource
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    createSource(sources, options) {
-        return exports.ChariotApiFp(this.configuration).createSource(sources, options).then((request) => request(this.axios, this.basePath));
+    createSource(createSource, options) {
+        return exports.ChariotApiFp(this.configuration).createSource(createSource, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Permanently deletes an application and all related conversations and sources. This cannot be undone.
