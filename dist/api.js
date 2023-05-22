@@ -320,6 +320,37 @@ exports.ChariotApiAxiosParamCreator = function (configuration) {
             };
         }),
         /**
+         * Generates a presigned Amazon S3 URL that can be used to upload a file. The URL expires after 15 minutes.   Returns an object containing the `presigned_url`to use for uploading the file (via PUT) and the `file_id` that can be used to add the file as a source.
+         * @summary Get pre-signed url
+         * @param {string} fileName Name of the file to upload, must include the file extension.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPresignedUrl: (fileName, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'fileName' is not null or undefined
+            common_1.assertParamExists('getPresignedUrl', 'fileName', fileName);
+            const localVarPath = `/files/presigned-url`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            if (fileName !== undefined) {
+                localVarQueryParameter['file_name'] = fileName;
+            }
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: common_1.toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
          * Retrieves a single source.
          * @summary Get source
          * @param {string} id
@@ -439,6 +470,31 @@ exports.ChariotApiAxiosParamCreator = function (configuration) {
          */
         listConversations: (options = {}) => __awaiter(this, void 0, void 0, function* () {
             const localVarPath = `/conversations`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: common_1.toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * Returns a list of all files uploaded for your account.
+         * @summary List files
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listFiles: (options = {}) => __awaiter(this, void 0, void 0, function* () {
+            const localVarPath = `/files`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
@@ -705,6 +761,19 @@ exports.ChariotApiFp = function (configuration) {
             });
         },
         /**
+         * Generates a presigned Amazon S3 URL that can be used to upload a file. The URL expires after 15 minutes.   Returns an object containing the `presigned_url`to use for uploading the file (via PUT) and the `file_id` that can be used to add the file as a source.
+         * @summary Get pre-signed url
+         * @param {string} fileName Name of the file to upload, must include the file extension.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPresignedUrl(fileName, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.getPresignedUrl(fileName, options);
+                return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
+            });
+        },
+        /**
          * Retrieves a single source.
          * @summary Get source
          * @param {string} id
@@ -764,6 +833,18 @@ exports.ChariotApiFp = function (configuration) {
         listConversations(options) {
             return __awaiter(this, void 0, void 0, function* () {
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.listConversations(options);
+                return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
+            });
+        },
+        /**
+         * Returns a list of all files uploaded for your account.
+         * @summary List files
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listFiles(options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.listFiles(options);
                 return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
             });
         },
@@ -921,6 +1002,16 @@ exports.ChariotApiFactory = function (apiKey, basePath, axios) {
             return localVarFp.getConversation(id, options).then((request) => request(axios, basePath));
         },
         /**
+         * Generates a presigned Amazon S3 URL that can be used to upload a file. The URL expires after 15 minutes.   Returns an object containing the `presigned_url`to use for uploading the file (via PUT) and the `file_id` that can be used to add the file as a source.
+         * @summary Get pre-signed url
+         * @param {string} fileName Name of the file to upload, must include the file extension.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPresignedUrl(fileName, options) {
+            return localVarFp.getPresignedUrl(fileName, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Retrieves a single source.
          * @summary Get source
          * @param {string} id
@@ -967,6 +1058,15 @@ exports.ChariotApiFactory = function (apiKey, basePath, axios) {
          */
         listConversations(options) {
             return localVarFp.listConversations(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of all files uploaded for your account.
+         * @summary List files
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listFiles(options) {
+            return localVarFp.listFiles(options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of all sources for your account. To get a list of all sources for an application, include the `application_id` query parameter.
@@ -1118,6 +1218,17 @@ class ChariotApi extends base_1.BaseAPI {
         return exports.ChariotApiFp(this.configuration).getConversation(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
+     * Generates a presigned Amazon S3 URL that can be used to upload a file. The URL expires after 15 minutes.   Returns an object containing the `presigned_url`to use for uploading the file (via PUT) and the `file_id` that can be used to add the file as a source.
+     * @summary Get pre-signed url
+     * @param {string} fileName Name of the file to upload, must include the file extension.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChariotApi
+     */
+    getPresignedUrl(fileName, options) {
+        return exports.ChariotApiFp(this.configuration).getPresignedUrl(fileName, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
      * Retrieves a single source.
      * @summary Get source
      * @param {string} id
@@ -1169,6 +1280,16 @@ class ChariotApi extends base_1.BaseAPI {
      */
     listConversations(options) {
         return exports.ChariotApiFp(this.configuration).listConversations(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Returns a list of all files uploaded for your account.
+     * @summary List files
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChariotApi
+     */
+    listFiles(options) {
+        return exports.ChariotApiFp(this.configuration).listFiles(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Returns a list of all sources for your account. To get a list of all sources for an application, include the `application_id` query parameter.

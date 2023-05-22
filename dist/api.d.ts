@@ -339,6 +339,50 @@ export interface MessageSource {
     'source': string;
 }
 /**
+ * Represents a file uploaded by a user
+ * @export
+ * @interface ModelFile
+ */
+export interface ModelFile {
+    /**
+     * Unique identifier for the file.
+     * @type {string}
+     * @memberof ModelFile
+     */
+    'id': string;
+    /**
+     * Original name of the file.
+     * @type {string}
+     * @memberof ModelFile
+     */
+    'name': string;
+    /**
+     * Timestamp of when the file was uploaded.
+     * @type {string}
+     * @memberof ModelFile
+     */
+    'uploaded_at': string;
+}
+/**
+ * Response for creating a pre-signed url used to upload files to S3
+ * @export
+ * @interface PreSignedUrlResponse
+ */
+export interface PreSignedUrlResponse {
+    /**
+     * Unique identifier for the file. Use this to add the file as a source.
+     * @type {string}
+     * @memberof PreSignedUrlResponse
+     */
+    'file_id': string;
+    /**
+     * Pre-signed url for uploading the file.
+     * @type {string}
+     * @memberof PreSignedUrlResponse
+     */
+    'presigned_url': string;
+}
+/**
  * Represents data associated with an application (file, URL, raw text, etc.) Each source gets processed, embedded, and stored in Pinecone
  * @export
  * @interface Source
@@ -546,6 +590,14 @@ export declare const ChariotApiAxiosParamCreator: (configuration?: Configuration
      */
     getConversation: (id: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
+     * Generates a presigned Amazon S3 URL that can be used to upload a file. The URL expires after 15 minutes.   Returns an object containing the `presigned_url`to use for uploading the file (via PUT) and the `file_id` that can be used to add the file as a source.
+     * @summary Get pre-signed url
+     * @param {string} fileName Name of the file to upload, must include the file extension.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPresignedUrl: (fileName: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
      * Retrieves a single source.
      * @summary Get source
      * @param {string} id
@@ -583,6 +635,13 @@ export declare const ChariotApiAxiosParamCreator: (configuration?: Configuration
      * @throws {RequiredError}
      */
     listConversations: (options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Returns a list of all files uploaded for your account.
+     * @summary List files
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    listFiles: (options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a list of all sources for your account. To get a list of all sources for an application, include the `application_id` query parameter.
      * @summary List sources
@@ -695,6 +754,14 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      */
     getConversation(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Conversation>>;
     /**
+     * Generates a presigned Amazon S3 URL that can be used to upload a file. The URL expires after 15 minutes.   Returns an object containing the `presigned_url`to use for uploading the file (via PUT) and the `file_id` that can be used to add the file as a source.
+     * @summary Get pre-signed url
+     * @param {string} fileName Name of the file to upload, must include the file extension.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPresignedUrl(fileName: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<PreSignedUrlResponse>>;
+    /**
      * Retrieves a single source.
      * @summary Get source
      * @param {string} id
@@ -732,6 +799,13 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     listConversations(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Array<Conversation>>>;
+    /**
+     * Returns a list of all files uploaded for your account.
+     * @summary List files
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    listFiles(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Array<any>>>;
     /**
      * Returns a list of all sources for your account. To get a list of all sources for an application, include the `application_id` query parameter.
      * @summary List sources
@@ -844,6 +918,14 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      */
     getConversation(id: string, options?: any): Promise<Conversation>;
     /**
+     * Generates a presigned Amazon S3 URL that can be used to upload a file. The URL expires after 15 minutes.   Returns an object containing the `presigned_url`to use for uploading the file (via PUT) and the `file_id` that can be used to add the file as a source.
+     * @summary Get pre-signed url
+     * @param {string} fileName Name of the file to upload, must include the file extension.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPresignedUrl(fileName: string, options?: any): Promise<PreSignedUrlResponse>;
+    /**
      * Retrieves a single source.
      * @summary Get source
      * @param {string} id
@@ -881,6 +963,13 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @throws {RequiredError}
      */
     listConversations(options?: any): Promise<Array<Conversation>>;
+    /**
+     * Returns a list of all files uploaded for your account.
+     * @summary List files
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    listFiles(options?: any): Promise<Array<any>>;
     /**
      * Returns a list of all sources for your account. To get a list of all sources for an application, include the `application_id` query parameter.
      * @summary List sources
@@ -1004,6 +1093,15 @@ export declare class ChariotApi extends BaseAPI {
      */
     getConversation(id: string, options?: AxiosRequestConfig): Promise<Conversation>;
     /**
+     * Generates a presigned Amazon S3 URL that can be used to upload a file. The URL expires after 15 minutes.   Returns an object containing the `presigned_url`to use for uploading the file (via PUT) and the `file_id` that can be used to add the file as a source.
+     * @summary Get pre-signed url
+     * @param {string} fileName Name of the file to upload, must include the file extension.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChariotApi
+     */
+    getPresignedUrl(fileName: string, options?: AxiosRequestConfig): Promise<PreSignedUrlResponse>;
+    /**
      * Retrieves a single source.
      * @summary Get source
      * @param {string} id
@@ -1046,6 +1144,14 @@ export declare class ChariotApi extends BaseAPI {
      * @memberof ChariotApi
      */
     listConversations(options?: AxiosRequestConfig): Promise<Conversation[]>;
+    /**
+     * Returns a list of all files uploaded for your account.
+     * @summary List files
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChariotApi
+     */
+    listFiles(options?: AxiosRequestConfig): Promise<any[]>;
     /**
      * Returns a list of all sources for your account. To get a list of all sources for an application, include the `application_id` query parameter.
      * @summary List sources
