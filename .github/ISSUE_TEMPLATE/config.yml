@@ -1,0 +1,7 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Chariot support
+    url: https://chariotai.com/community
+    about: |
+      Please only file issues here that you believe represent actual bugs or feature requests for the Chariot Node library.
+      If you're having general trouble with the Chariot API, please reach out to us for support at help@chariotai.com.

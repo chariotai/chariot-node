@@ -1,0 +1,37 @@
+{
+  "name": "chariotai",
+  "version": "1.0.14",
+  "description": "Node.js library for the Chariot API",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chariotai/chariot-node.git"
+  },
+  "keywords": [
+    "chariot",
+    "chariotai",
+    "chariotapi",
+    "gpt3",
+    "gpt-3",
+    "gpt4",
+    "gpt-4"
+  ],
+  "author": "Chariot",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/chariotai/chariot-node/issues"
+  },
+  "scripts": {
+    "build": "tsc --outDir dist/",
+    "generate-openapi-sdk": "bash generate-openapi-sdk.sh"
+  },
+  "homepage": "https://github.com/chariotai/chariot-node#readme",
+  "dependencies": {
+    "axios": "^0.26.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.11.5",
+    "typescript": "^3.6.4"
+  }
+}
