@@ -116,7 +116,7 @@ exports.ChariotApiAxiosParamCreator = function (configuration) {
             };
         }),
         /**
-         * Creates a new source. You can create multiple sources at once by passing an array of sources.
+         * Creates a new source.
          * @summary Create source
          * @param {CreateSource} createSource
          * @param {*} [options] Override http request option.
@@ -614,7 +614,7 @@ exports.ChariotApiFp = function (configuration) {
             });
         },
         /**
-         * Creates a new source. You can create multiple sources at once by passing an array of sources.
+         * Creates a new source.
          * @summary Create source
          * @param {CreateSource} createSource
          * @param {*} [options] Override http request option.
@@ -851,7 +851,7 @@ exports.ChariotApiFactory = function (apiKey, basePath, axios) {
             return localVarFp.createOrContinueConversation(createOrContinueConversation, options).then((request) => request(axios, basePath));
         },
         /**
-         * Creates a new source. You can create multiple sources at once by passing an array of sources.
+         * Creates a new source.
          * @summary Create source
          * @param {CreateSource} createSource
          * @param {*} [options] Override http request option.
@@ -1041,7 +1041,7 @@ class ChariotApi extends base_1.BaseAPI {
         return exports.ChariotApiFp(this.configuration).createOrContinueConversation(createOrContinueConversation, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Creates a new source. You can create multiple sources at once by passing an array of sources.
+     * Creates a new source.
      * @summary Create source
      * @param {CreateSource} createSource
      * @param {*} [options] Override http request option.
