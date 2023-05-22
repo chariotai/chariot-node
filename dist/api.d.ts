@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import { Configuration } from './configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 import type { RequestArgs } from './base';
 import { BaseAPI } from './base';
 /**
@@ -721,7 +721,7 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createApplication(createApplication: CreateApplication, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Application>>;
+    createApplication(createApplication: CreateApplication, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Application>>;
     /**
      * Creates or continues an existing conversation. If `conversation_id` is provided, the conversation will be continued.  Otherwise, a new conversation will be created.  If a new conversation is created, the `conversation_id` will be returned in the response. You can use this id to continue the conversation.  The `messages` array is automatically updated for each request/response, so you don\'t need to maintain any message history locally.  To stream the output, set `stream:true` in the request body. The reponse will use [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) to stream new message chunks as they are generated.  For more information on how to stream messages in your application, see our guide on [streaming conversations](/guides/streaming-conversations).
      * @summary Create or continue conversation
@@ -729,7 +729,7 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createOrContinueConversation(createOrContinueConversation: CreateOrContinueConversation, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ConversationResponse>>;
+    createOrContinueConversation(createOrContinueConversation: CreateOrContinueConversation, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<ConversationResponse>>;
     /**
      * Creates a new source. You can create multiple sources at once by passing an array of sources.
      * @summary Create source
@@ -737,7 +737,7 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createSource(sources: Sources, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResponseCreateSource>>;
+    createSource(sources: Sources, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<ResponseCreateSource>>;
     /**
      * Permanently deletes an application and all related conversations and sources. This cannot be undone.
      * @summary Delete application
@@ -745,7 +745,7 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteApplication(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    deleteApplication(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<void>>;
     /**
      * Permanently deletes all sources and related embeddings for the specified application. This cannot be undone.
      * @summary Delete application sources
@@ -753,7 +753,7 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteApplicationSources(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    deleteApplicationSources(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<void>>;
     /**
      * Permanently deletes a conversation and all related messages. This cannot be undone.
      * @summary Delete conversation
@@ -761,7 +761,7 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteConversationConversationsIdDelete(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    deleteConversationConversationsIdDelete(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<void>>;
     /**
      * Permanently deletes the specified source. This cannot be undone.
      * @summary Delete source
@@ -769,7 +769,7 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteSource(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    deleteSource(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<void>>;
     /**
      * Retrieves a single application.
      * @summary Get application
@@ -777,7 +777,7 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getApplication(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Application>>;
+    getApplication(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Application>>;
     /**
      * Retrieves a single conversation, including all messages.
      * @summary Get conversation
@@ -785,7 +785,7 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversation(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>>;
+    getConversation(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Conversation>>;
     /**
      * Retrieves a single source.
      * @summary Get source
@@ -793,7 +793,7 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSource(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Source>>;
+    getSource(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Source>>;
     /**
      * Returns all conversations for an application. Does not include conversation messages. To get messages, use the [conversations](/api-reference/conversations#get-conversation) endpoint and get the conversation by id.
      * @summary List application conversations
@@ -801,7 +801,7 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listApplicationConversations(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Conversation>>>;
+    listApplicationConversations(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Array<Conversation>>>;
     /**
      * Returns a list of all sources associated with the specified application.
      * @summary List application sources
@@ -809,21 +809,21 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listApplicationSources(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Source>>>;
+    listApplicationSources(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Array<Source>>>;
     /**
      * Returns a list of your applications.
      * @summary List applications
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listApplications(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Application>>>;
+    listApplications(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Array<Application>>>;
     /**
      * Returns a list of all conversations for your account. This endpoint does not include messages for the conversations. To get messages, retrieve the [conversation by its id](/api-reference/conversations#get-conversation).
      * @summary List conversations
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listConversations(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Conversation>>>;
+    listConversations(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Array<Conversation>>>;
     /**
      * Returns a list of all sources for your account. To get a list of all sources for an application, include the `application_id` query parameter.
      * @summary List sources
@@ -831,14 +831,14 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listSources(applicationId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Source>>>;
+    listSources(applicationId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Array<Source>>>;
     /**
      *
      * @summary Read Root
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRootGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>>;
+    readRootGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<any>>;
     /**
      * Updates the specified application.
      * @summary Update application
@@ -847,7 +847,7 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateApplication(id: string, updateApplication: UpdateApplication, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Application>>;
+    updateApplication(id: string, updateApplication: UpdateApplication, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Application>>;
     /**
      * Updates the specifed conversation.
      * @summary Update conversation
@@ -856,7 +856,7 @@ export declare const ChariotApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateConversation(id: string, updateConversation: UpdateConversation, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>>;
+    updateConversation(id: string, updateConversation: UpdateConversation, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Conversation>>;
 };
 /**
  * ChariotApi - factory interface
@@ -870,7 +870,7 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createApplication(createApplication: CreateApplication, options?: any): AxiosPromise<Application>;
+    createApplication(createApplication: CreateApplication, options?: any): Promise<Application>;
     /**
      * Creates or continues an existing conversation. If `conversation_id` is provided, the conversation will be continued.  Otherwise, a new conversation will be created.  If a new conversation is created, the `conversation_id` will be returned in the response. You can use this id to continue the conversation.  The `messages` array is automatically updated for each request/response, so you don\'t need to maintain any message history locally.  To stream the output, set `stream:true` in the request body. The reponse will use [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) to stream new message chunks as they are generated.  For more information on how to stream messages in your application, see our guide on [streaming conversations](/guides/streaming-conversations).
      * @summary Create or continue conversation
@@ -878,7 +878,7 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createOrContinueConversation(createOrContinueConversation: CreateOrContinueConversation, options?: any): AxiosPromise<ConversationResponse>;
+    createOrContinueConversation(createOrContinueConversation: CreateOrContinueConversation, options?: any): Promise<ConversationResponse>;
     /**
      * Creates a new source. You can create multiple sources at once by passing an array of sources.
      * @summary Create source
@@ -886,7 +886,7 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createSource(sources: Sources, options?: any): AxiosPromise<ResponseCreateSource>;
+    createSource(sources: Sources, options?: any): Promise<ResponseCreateSource>;
     /**
      * Permanently deletes an application and all related conversations and sources. This cannot be undone.
      * @summary Delete application
@@ -894,7 +894,7 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteApplication(id: string, options?: any): AxiosPromise<void>;
+    deleteApplication(id: string, options?: any): Promise<void>;
     /**
      * Permanently deletes all sources and related embeddings for the specified application. This cannot be undone.
      * @summary Delete application sources
@@ -902,7 +902,7 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteApplicationSources(id: string, options?: any): AxiosPromise<void>;
+    deleteApplicationSources(id: string, options?: any): Promise<void>;
     /**
      * Permanently deletes a conversation and all related messages. This cannot be undone.
      * @summary Delete conversation
@@ -910,7 +910,7 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteConversationConversationsIdDelete(id: string, options?: any): AxiosPromise<void>;
+    deleteConversationConversationsIdDelete(id: string, options?: any): Promise<void>;
     /**
      * Permanently deletes the specified source. This cannot be undone.
      * @summary Delete source
@@ -918,7 +918,7 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteSource(id: string, options?: any): AxiosPromise<void>;
+    deleteSource(id: string, options?: any): Promise<void>;
     /**
      * Retrieves a single application.
      * @summary Get application
@@ -926,7 +926,7 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getApplication(id: string, options?: any): AxiosPromise<Application>;
+    getApplication(id: string, options?: any): Promise<Application>;
     /**
      * Retrieves a single conversation, including all messages.
      * @summary Get conversation
@@ -934,7 +934,7 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversation(id: string, options?: any): AxiosPromise<Conversation>;
+    getConversation(id: string, options?: any): Promise<Conversation>;
     /**
      * Retrieves a single source.
      * @summary Get source
@@ -942,7 +942,7 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getSource(id: string, options?: any): AxiosPromise<Source>;
+    getSource(id: string, options?: any): Promise<Source>;
     /**
      * Returns all conversations for an application. Does not include conversation messages. To get messages, use the [conversations](/api-reference/conversations#get-conversation) endpoint and get the conversation by id.
      * @summary List application conversations
@@ -950,7 +950,7 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listApplicationConversations(id: string, options?: any): AxiosPromise<Array<Conversation>>;
+    listApplicationConversations(id: string, options?: any): Promise<Array<Conversation>>;
     /**
      * Returns a list of all sources associated with the specified application.
      * @summary List application sources
@@ -958,21 +958,21 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listApplicationSources(id: string, options?: any): AxiosPromise<Array<Source>>;
+    listApplicationSources(id: string, options?: any): Promise<Array<Source>>;
     /**
      * Returns a list of your applications.
      * @summary List applications
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listApplications(options?: any): AxiosPromise<Array<Application>>;
+    listApplications(options?: any): Promise<Array<Application>>;
     /**
      * Returns a list of all conversations for your account. This endpoint does not include messages for the conversations. To get messages, retrieve the [conversation by its id](/api-reference/conversations#get-conversation).
      * @summary List conversations
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listConversations(options?: any): AxiosPromise<Array<Conversation>>;
+    listConversations(options?: any): Promise<Array<Conversation>>;
     /**
      * Returns a list of all sources for your account. To get a list of all sources for an application, include the `application_id` query parameter.
      * @summary List sources
@@ -980,14 +980,14 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listSources(applicationId?: string, options?: any): AxiosPromise<Array<Source>>;
+    listSources(applicationId?: string, options?: any): Promise<Array<Source>>;
     /**
      *
      * @summary Read Root
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRootGet(options?: any): AxiosPromise<any>;
+    readRootGet(options?: any): Promise<any>;
     /**
      * Updates the specified application.
      * @summary Update application
@@ -996,7 +996,7 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateApplication(id: string, updateApplication: UpdateApplication, options?: any): AxiosPromise<Application>;
+    updateApplication(id: string, updateApplication: UpdateApplication, options?: any): Promise<Application>;
     /**
      * Updates the specifed conversation.
      * @summary Update conversation
@@ -1005,7 +1005,7 @@ export declare const ChariotApiFactory: (apiKey: string, basePath?: string, axio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateConversation(id: string, updateConversation: UpdateConversation, options?: any): AxiosPromise<Conversation>;
+    updateConversation(id: string, updateConversation: UpdateConversation, options?: any): Promise<Conversation>;
 };
 /**
  * ChariotApi - object-oriented interface
@@ -1022,7 +1022,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    createApplication(createApplication: CreateApplication, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Application, any>>;
+    createApplication(createApplication: CreateApplication, options?: AxiosRequestConfig): Promise<Application>;
     /**
      * Creates or continues an existing conversation. If `conversation_id` is provided, the conversation will be continued.  Otherwise, a new conversation will be created.  If a new conversation is created, the `conversation_id` will be returned in the response. You can use this id to continue the conversation.  The `messages` array is automatically updated for each request/response, so you don\'t need to maintain any message history locally.  To stream the output, set `stream:true` in the request body. The reponse will use [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) to stream new message chunks as they are generated.  For more information on how to stream messages in your application, see our guide on [streaming conversations](/guides/streaming-conversations).
      * @summary Create or continue conversation
@@ -1031,7 +1031,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    createOrContinueConversation(createOrContinueConversation: CreateOrContinueConversation, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<ConversationResponse, any>>;
+    createOrContinueConversation(createOrContinueConversation: CreateOrContinueConversation, options?: AxiosRequestConfig): Promise<ConversationResponse>;
     /**
      * Creates a new source. You can create multiple sources at once by passing an array of sources.
      * @summary Create source
@@ -1040,7 +1040,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    createSource(sources: Sources, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<ResponseCreateSource, any>>;
+    createSource(sources: Sources, options?: AxiosRequestConfig): Promise<ResponseCreateSource>;
     /**
      * Permanently deletes an application and all related conversations and sources. This cannot be undone.
      * @summary Delete application
@@ -1049,7 +1049,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    deleteApplication(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    deleteApplication(id: string, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Permanently deletes all sources and related embeddings for the specified application. This cannot be undone.
      * @summary Delete application sources
@@ -1058,7 +1058,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    deleteApplicationSources(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    deleteApplicationSources(id: string, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Permanently deletes a conversation and all related messages. This cannot be undone.
      * @summary Delete conversation
@@ -1067,7 +1067,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    deleteConversationConversationsIdDelete(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    deleteConversationConversationsIdDelete(id: string, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Permanently deletes the specified source. This cannot be undone.
      * @summary Delete source
@@ -1076,7 +1076,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    deleteSource(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    deleteSource(id: string, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Retrieves a single application.
      * @summary Get application
@@ -1085,7 +1085,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    getApplication(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Application, any>>;
+    getApplication(id: string, options?: AxiosRequestConfig): Promise<Application>;
     /**
      * Retrieves a single conversation, including all messages.
      * @summary Get conversation
@@ -1094,7 +1094,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    getConversation(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Conversation, any>>;
+    getConversation(id: string, options?: AxiosRequestConfig): Promise<Conversation>;
     /**
      * Retrieves a single source.
      * @summary Get source
@@ -1103,7 +1103,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    getSource(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Source, any>>;
+    getSource(id: string, options?: AxiosRequestConfig): Promise<Source>;
     /**
      * Returns all conversations for an application. Does not include conversation messages. To get messages, use the [conversations](/api-reference/conversations#get-conversation) endpoint and get the conversation by id.
      * @summary List application conversations
@@ -1112,7 +1112,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    listApplicationConversations(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Conversation[], any>>;
+    listApplicationConversations(id: string, options?: AxiosRequestConfig): Promise<Conversation[]>;
     /**
      * Returns a list of all sources associated with the specified application.
      * @summary List application sources
@@ -1121,7 +1121,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    listApplicationSources(id: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Source[], any>>;
+    listApplicationSources(id: string, options?: AxiosRequestConfig): Promise<Source[]>;
     /**
      * Returns a list of your applications.
      * @summary List applications
@@ -1129,7 +1129,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    listApplications(options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Application[], any>>;
+    listApplications(options?: AxiosRequestConfig): Promise<Application[]>;
     /**
      * Returns a list of all conversations for your account. This endpoint does not include messages for the conversations. To get messages, retrieve the [conversation by its id](/api-reference/conversations#get-conversation).
      * @summary List conversations
@@ -1137,7 +1137,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    listConversations(options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Conversation[], any>>;
+    listConversations(options?: AxiosRequestConfig): Promise<Conversation[]>;
     /**
      * Returns a list of all sources for your account. To get a list of all sources for an application, include the `application_id` query parameter.
      * @summary List sources
@@ -1146,7 +1146,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    listSources(applicationId?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Source[], any>>;
+    listSources(applicationId?: string, options?: AxiosRequestConfig): Promise<Source[]>;
     /**
      *
      * @summary Read Root
@@ -1154,7 +1154,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    readRootGet(options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
+    readRootGet(options?: AxiosRequestConfig): Promise<any>;
     /**
      * Updates the specified application.
      * @summary Update application
@@ -1164,7 +1164,7 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    updateApplication(id: string, updateApplication: UpdateApplication, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Application, any>>;
+    updateApplication(id: string, updateApplication: UpdateApplication, options?: AxiosRequestConfig): Promise<Application>;
     /**
      * Updates the specifed conversation.
      * @summary Update conversation
@@ -1174,5 +1174,5 @@ export declare class ChariotApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChariotApi
      */
-    updateConversation(id: string, updateConversation: UpdateConversation, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Conversation, any>>;
+    updateConversation(id: string, updateConversation: UpdateConversation, options?: AxiosRequestConfig): Promise<Conversation>;
 }

@@ -1229,7 +1229,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createApplication(createApplication: CreateApplication, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Application>> {
+        async createApplication(createApplication: CreateApplication, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Application>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createApplication(createApplication, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1240,7 +1240,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createOrContinueConversation(createOrContinueConversation: CreateOrContinueConversation, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ConversationResponse>> {
+        async createOrContinueConversation(createOrContinueConversation: CreateOrContinueConversation, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<ConversationResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createOrContinueConversation(createOrContinueConversation, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1251,7 +1251,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createSource(sources: Sources, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResponseCreateSource>> {
+        async createSource(sources: Sources, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<ResponseCreateSource>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createSource(sources, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1262,7 +1262,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteApplication(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async deleteApplication(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteApplication(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1273,7 +1273,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteApplicationSources(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async deleteApplicationSources(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteApplicationSources(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1284,7 +1284,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteConversationConversationsIdDelete(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async deleteConversationConversationsIdDelete(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteConversationConversationsIdDelete(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1295,7 +1295,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteSource(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async deleteSource(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteSource(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1306,7 +1306,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getApplication(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Application>> {
+        async getApplication(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Application>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getApplication(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1317,7 +1317,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getConversation(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>> {
+        async getConversation(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Conversation>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getConversation(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1328,7 +1328,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSource(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Source>> {
+        async getSource(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Source>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSource(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1339,7 +1339,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listApplicationConversations(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Conversation>>> {
+        async listApplicationConversations(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Array<Conversation>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listApplicationConversations(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1350,7 +1350,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listApplicationSources(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Source>>> {
+        async listApplicationSources(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Array<Source>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listApplicationSources(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1360,7 +1360,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listApplications(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Application>>> {
+        async listApplications(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Array<Application>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listApplications(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1370,7 +1370,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listConversations(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Conversation>>> {
+        async listConversations(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Array<Conversation>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listConversations(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1381,7 +1381,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listSources(applicationId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Source>>> {
+        async listSources(applicationId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Array<Source>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listSources(applicationId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1391,7 +1391,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async readRootGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+        async readRootGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.readRootGet(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1403,7 +1403,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateApplication(id: string, updateApplication: UpdateApplication, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Application>> {
+        async updateApplication(id: string, updateApplication: UpdateApplication, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Application>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateApplication(id, updateApplication, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1415,7 +1415,7 @@ export const ChariotApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateConversation(id: string, updateConversation: UpdateConversation, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Conversation>> {
+        async updateConversation(id: string, updateConversation: UpdateConversation, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<Conversation>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateConversation(id, updateConversation, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1437,7 +1437,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createApplication(createApplication: CreateApplication, options?: any): AxiosPromise<Application> {
+        createApplication(createApplication: CreateApplication, options?: any): Promise<Application> {
             return localVarFp.createApplication(createApplication, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1447,7 +1447,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createOrContinueConversation(createOrContinueConversation: CreateOrContinueConversation, options?: any): AxiosPromise<ConversationResponse> {
+        createOrContinueConversation(createOrContinueConversation: CreateOrContinueConversation, options?: any): Promise<ConversationResponse> {
             return localVarFp.createOrContinueConversation(createOrContinueConversation, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1457,7 +1457,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createSource(sources: Sources, options?: any): AxiosPromise<ResponseCreateSource> {
+        createSource(sources: Sources, options?: any): Promise<ResponseCreateSource> {
             return localVarFp.createSource(sources, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1467,7 +1467,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteApplication(id: string, options?: any): AxiosPromise<void> {
+        deleteApplication(id: string, options?: any): Promise<void> {
             return localVarFp.deleteApplication(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1477,7 +1477,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteApplicationSources(id: string, options?: any): AxiosPromise<void> {
+        deleteApplicationSources(id: string, options?: any): Promise<void> {
             return localVarFp.deleteApplicationSources(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1487,7 +1487,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteConversationConversationsIdDelete(id: string, options?: any): AxiosPromise<void> {
+        deleteConversationConversationsIdDelete(id: string, options?: any): Promise<void> {
             return localVarFp.deleteConversationConversationsIdDelete(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1497,7 +1497,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteSource(id: string, options?: any): AxiosPromise<void> {
+        deleteSource(id: string, options?: any): Promise<void> {
             return localVarFp.deleteSource(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1507,7 +1507,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApplication(id: string, options?: any): AxiosPromise<Application> {
+        getApplication(id: string, options?: any): Promise<Application> {
             return localVarFp.getApplication(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1517,7 +1517,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConversation(id: string, options?: any): AxiosPromise<Conversation> {
+        getConversation(id: string, options?: any): Promise<Conversation> {
             return localVarFp.getConversation(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1527,7 +1527,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSource(id: string, options?: any): AxiosPromise<Source> {
+        getSource(id: string, options?: any): Promise<Source> {
             return localVarFp.getSource(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1537,7 +1537,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listApplicationConversations(id: string, options?: any): AxiosPromise<Array<Conversation>> {
+        listApplicationConversations(id: string, options?: any): Promise<Array<Conversation>> {
             return localVarFp.listApplicationConversations(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1547,7 +1547,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listApplicationSources(id: string, options?: any): AxiosPromise<Array<Source>> {
+        listApplicationSources(id: string, options?: any): Promise<Array<Source>> {
             return localVarFp.listApplicationSources(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1556,7 +1556,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listApplications(options?: any): AxiosPromise<Array<Application>> {
+        listApplications(options?: any): Promise<Array<Application>> {
             return localVarFp.listApplications(options).then((request) => request(axios, basePath));
         },
         /**
@@ -1565,7 +1565,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listConversations(options?: any): AxiosPromise<Array<Conversation>> {
+        listConversations(options?: any): Promise<Array<Conversation>> {
             return localVarFp.listConversations(options).then((request) => request(axios, basePath));
         },
         /**
@@ -1575,7 +1575,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listSources(applicationId?: string, options?: any): AxiosPromise<Array<Source>> {
+        listSources(applicationId?: string, options?: any): Promise<Array<Source>> {
             return localVarFp.listSources(applicationId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1584,7 +1584,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        readRootGet(options?: any): AxiosPromise<any> {
+        readRootGet(options?: any): Promise<any> {
             return localVarFp.readRootGet(options).then((request) => request(axios, basePath));
         },
         /**
@@ -1595,7 +1595,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateApplication(id: string, updateApplication: UpdateApplication, options?: any): AxiosPromise<Application> {
+        updateApplication(id: string, updateApplication: UpdateApplication, options?: any): Promise<Application> {
             return localVarFp.updateApplication(id, updateApplication, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1606,7 +1606,7 @@ export const ChariotApiFactory = function (apiKey: string, basePath?: string, ax
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateConversation(id: string, updateConversation: UpdateConversation, options?: any): AxiosPromise<Conversation> {
+        updateConversation(id: string, updateConversation: UpdateConversation, options?: any): Promise<Conversation> {
             return localVarFp.updateConversation(id, updateConversation, options).then((request) => request(axios, basePath));
         },
     };

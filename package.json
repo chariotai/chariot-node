@@ -1,6 +1,6 @@
 {
   "name": "chariotai",
-  "version": "1.0.14",
+  "version": "1.0.16",
   "description": "Node.js library for the Chariot API",
   "repository": {
     "type": "git",

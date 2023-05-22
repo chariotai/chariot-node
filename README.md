@@ -19,14 +19,15 @@ import { ChariotApi } from 'chariotai';
 
 const chariot = new ChariotApi(process.env.CHARIOT_API_KEY);
 
-const response = await chariot.listApplications();
-console.log(response.data);
+const applications = await chariot.listApplications();
+
+console.log(applications);
 ```
 
 Or without ES modules and `async`/`await`:
 
 ```javascript
-const ChariotApi = require('chariotai');
+const { ChariotApi } = require('chariotai');
 
 const chariot = new ChariotApi(process.env.CHARIOT_API_KEY)
 
