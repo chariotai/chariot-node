@@ -30,3 +30,4 @@ package.json
 package-lock.json
 sdk-template-overrides/
 generate-openapi-sdk.sh
+api-extensions.ts

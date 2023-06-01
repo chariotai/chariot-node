@@ -28,9 +28,13 @@
   },
   "homepage": "https://github.com/chariotai/chariot-node#readme",
   "dependencies": {
-    "axios": "^0.26.0"
+    "abort-controller": "^3.0.0",
+    "axios": "^0.26.0",
+    "eventemitter3": "^5.0.1",
+    "isomorphic-fetch": "^3.0.0"
   },
   "devDependencies": {
+    "@types/isomorphic-fetch": "^0.0.36",
     "@types/node": "^12.11.5",
     "typescript": "^3.6.4"
   }

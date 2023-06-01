@@ -14,5 +14,5 @@
 
 
 export * from "./api";
+export * from "./api-extensions";
 export * from "./configuration";
-
