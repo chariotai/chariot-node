@@ -37,14 +37,21 @@ chariot.listApplications()
 ```
 
 # Streaming conversations
-You can use `streamConversation()` to easily read the server-sent event stream from the Chariot API:
+You can use the `streamConversation()` helper to read the server-sent event stream from the Chariot API:
 
 ```javascript
 import { Chariot } from 'chariotai';
 
 const chariot = new Chariot(process.env.CHARIOT_API_KEY);
 
+// If no conversation_id is provided, a new conversation will be created
+const conversation = await chariot.streamConversation({
+  message: message,
+  application_id: 'app_MDUxZmU4'
+})
+
 // Triggered for each new message chunk
+// Includes the message chunk, conversation_id, and conversation title
 conversation.on('message', (message: any) => {
   console.log(message);
 });
@@ -52,7 +59,7 @@ conversation.on('message', (message: any) => {
 // Triggered when the stream ends successfuly
 // Includes total token count and sources used by the LLM
 conversation.on('complete', (data: any) => {
-  console.log('Done streaming:', data);
+  console.log('Streaming completed:', data);
 );
 
 // Triggered when the stream ends (successfuly or not)
@@ -60,7 +67,7 @@ conversation.on('end', () => {
   console.log('Stream ended');
 });
 
-// Triggered when there is an error while streaming
+// Triggered when there is an error during the stream
 conversation.on('error', (data: any) => {
   console.log('Error:', data);
 });
