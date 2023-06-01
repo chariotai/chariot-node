@@ -1,6 +1,5 @@
 import { ChariotApi, CreateOrContinueConversation } from "./api";
-import { AbortController } from 'abort-controller'; // includes polyfill to support older Node.js versions
-const fetch = require('isomorphic-fetch'); // works in node and browser environments
+const AbortController = require('abort-controller');  // includes polyfill to support older Node.js versions
 const EventEmitter = require('eventemitter3'); // works in node and browser environments
 
 // ================================================================ Types
@@ -31,7 +30,7 @@ export class Chariot extends ChariotApi {
      * @summary Stream a conversation
      * @param {CreateOrContinueConversation} conversation 
      */
-    public async streamConversation(conversation: CreateOrContinueConversation) : Promise<ChariotStreamController> {
+    public async streamConversation(conversation: CreateOrContinueConversation): Promise<ChariotStreamController> {
         const emitter = new EventEmitter();
 
         // Set stream flag
@@ -68,6 +67,8 @@ export class Chariot extends ChariotApi {
         // Kick off the request asynchronously so caller can subscribe to events
         Promise.resolve().then(async () => {
             try {
+                const fetch = require('isomorphic-fetch'); // makes fetch work in older node and browser environments
+
                 // Make the POST request to the Chariot API
                 const response = await fetch(`${this.basePath}/conversations`, {
                     method: "POST",
@@ -84,11 +85,13 @@ export class Chariot extends ChariotApi {
                     throw new Error(`POST request failed: ${response.status}`);
                 }
 
-                // Read the stream and emit events to the caller
-                const eventStream = response.body;
-                eventStream.on('data', (event: any) => {
-                    this.handleServerSentEvent(event, emitter);
-                });
+                // In browser environments we need to use ReadableStream. For node env, we use the default stream
+                if (this.isBrowserEnvironment()) {
+                    await this.readBrowserStream(response, emitter);
+                } else {
+                    this.readNodeStream(response, emitter);
+                }
+
             } catch (error) {
                 emitter.emit('error', `Request failed: ${error}`);
                 emitter.emit('end');
@@ -96,6 +99,57 @@ export class Chariot extends ChariotApi {
         });
 
         return controller;
+    }
+
+    /**
+     * Read the browser stream and emit events to the caller
+     */
+    private async readBrowserStream(response: any, emitter: any) {
+        try {
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            // Read the events as they arrive
+            while (true) {
+                const { done, value } = await reader.read();
+
+                if (done) {
+                    emitter.emit('end');
+                    break;
+                }
+
+                // Decode the data from the stream
+                const data = decoder.decode(value);
+
+                // Handle each chunk of data and emit appropriate events
+                this.handleServerSentEvent(data, emitter);
+            }
+        } catch (error) {
+            if (error.name === 'AbortError') return; // ignore if intentionally aborted
+
+            emitter.emit('error', `Failed to read stream: ${error}`);
+            emitter.emit('end');
+        }
+    }
+
+    /**
+     * Read the node stream and emit events to the caller
+     */
+    private readNodeStream(response: any, emitter: any) {
+        try {
+            const eventStream = response.body;
+
+            eventStream.on('data', (event: any) => {
+                this.handleServerSentEvent(event, emitter);
+            });
+
+            eventStream.on('end', () => {
+                emitter.emit('end')
+            });
+        } catch (error) {
+            emitter.emit('error', `Failed to read stream: ${error}`);
+            emitter.emit('end');
+        }
     }
 
     /**
@@ -126,4 +180,11 @@ export class Chariot extends ChariotApi {
         }
     }
 
+    /**
+     * Checks if the code is running in a browser environment
+     */
+    private isBrowserEnvironment() {
+        return typeof window !== 'undefined' && typeof window.document !==
+            'undefined';
+    }
 }

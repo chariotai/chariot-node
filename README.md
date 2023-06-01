@@ -15,9 +15,9 @@ Full docs and api reference can be found at [chariotai.com/docs](https://chariot
 To use the Chariot API, you'll need to create an api key in the [Chariot Dashboard](https://chariotai.com/dashboard/api-keys).
 
 ```javascript
-import { ChariotApi } from 'chariotai';
+import { Chariot } from 'chariotai';
 
-const chariot = new ChariotApi(process.env.CHARIOT_API_KEY);
+const chariot = new Chariot(process.env.CHARIOT_API_KEY);
 
 const applications = await chariot.listApplications();
 
@@ -35,3 +35,38 @@ chariot.listApplications()
   .then(applications => console.log(applications))
   .catch(error => console.error(error));
 ```
+
+# Streaming conversations
+You can use `streamConversation()` to easily read the server-sent event stream from the Chariot API:
+
+```javascript
+import { Chariot } from 'chariotai';
+
+const chariot = new Chariot(process.env.CHARIOT_API_KEY);
+
+// Triggered for each new message chunk
+conversation.on('message', (message: any) => {
+  console.log(message);
+});
+
+// Triggered when the stream ends successfuly
+// Includes total token count and sources used by the LLM
+conversation.on('complete', (data: any) => {
+  console.log('Done streaming:', data);
+);
+
+// Triggered when the stream ends (successfuly or not)
+conversation.on('end', () => {
+  console.log('Stream ended');
+});
+
+// Triggered when there is an error while streaming
+conversation.on('error', (data: any) => {
+  console.log('Error:', data);
+});
+
+// Aborts the stream and terminates the request
+conversation.abort();
+```
+
+Alternatively, if you want to work with the raw server-sent event stream, you can make a POST request to the `/conversations` endpoint manually.

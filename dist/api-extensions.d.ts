@@ -25,7 +25,19 @@ export declare class Chariot extends ChariotApi {
      */
     private startConversationStream;
     /**
+     * Read the browser stream and emit events to the caller
+     */
+    private readBrowserStream;
+    /**
+     * Read the node stream and emit events to the caller
+     */
+    private readNodeStream;
+    /**
      * Parses the raw server-sent event from the API and emits the appropriate event
      */
     private handleServerSentEvent;
+    /**
+     * Checks if the code is running in a browser environment
+     */
+    private isBrowserEnvironment;
 }

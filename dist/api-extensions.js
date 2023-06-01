@@ -11,8 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Chariot = void 0;
 const api_1 = require("./api");
-const abort_controller_1 = require("abort-controller"); // includes polyfill to support older Node.js versions
-const fetch = require('isomorphic-fetch'); // works in node and browser environments
+const AbortController = require('abort-controller'); // includes polyfill to support older Node.js versions
 const EventEmitter = require('eventemitter3'); // works in node and browser environments
 // ================================================================ Extensions
 /**
@@ -58,10 +57,11 @@ class Chariot extends api_1.ChariotApi {
      */
     startConversationStream(conversation, emitter) {
         return __awaiter(this, void 0, void 0, function* () {
-            const controller = new abort_controller_1.AbortController();
+            const controller = new AbortController();
             // Kick off the request asynchronously so caller can subscribe to events
             Promise.resolve().then(() => __awaiter(this, void 0, void 0, function* () {
                 try {
+                    const fetch = require('isomorphic-fetch'); // makes fetch work in older node and browser environments
                     // Make the POST request to the Chariot API
                     const response = yield fetch(`${this.basePath}/conversations`, {
                         method: "POST",
@@ -76,11 +76,13 @@ class Chariot extends api_1.ChariotApi {
                     if (!response.ok || !response.body) {
                         throw new Error(`POST request failed: ${response.status}`);
                     }
-                    // Read the stream and emit events to the caller
-                    const eventStream = response.body;
-                    eventStream.on('data', (event) => {
-                        this.handleServerSentEvent(event, emitter);
-                    });
+                    // In browser environments we need to use ReadableStream. For node env, we use the default stream
+                    if (this.isBrowserEnvironment()) {
+                        yield this.readBrowserStream(response, emitter);
+                    }
+                    else {
+                        this.readNodeStream(response, emitter);
+                    }
                 }
                 catch (error) {
                     emitter.emit('error', `Request failed: ${error}`);
@@ -89,6 +91,53 @@ class Chariot extends api_1.ChariotApi {
             }));
             return controller;
         });
+    }
+    /**
+     * Read the browser stream and emit events to the caller
+     */
+    readBrowserStream(response, emitter) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                // Read the events as they arrive
+                while (true) {
+                    const { done, value } = yield reader.read();
+                    if (done) {
+                        emitter.emit('end');
+                        break;
+                    }
+                    // Decode the data from the stream
+                    const data = decoder.decode(value);
+                    // Handle each chunk of data and emit appropriate events
+                    this.handleServerSentEvent(data, emitter);
+                }
+            }
+            catch (error) {
+                if (error.name === 'AbortError')
+                    return; // ignore if intentionally aborted
+                emitter.emit('error', `Failed to read stream: ${error}`);
+                emitter.emit('end');
+            }
+        });
+    }
+    /**
+     * Read the node stream and emit events to the caller
+     */
+    readNodeStream(response, emitter) {
+        try {
+            const eventStream = response.body;
+            eventStream.on('data', (event) => {
+                this.handleServerSentEvent(event, emitter);
+            });
+            eventStream.on('end', () => {
+                emitter.emit('end');
+            });
+        }
+        catch (error) {
+            emitter.emit('error', `Failed to read stream: ${error}`);
+            emitter.emit('end');
+        }
     }
     /**
      * Parses the raw server-sent event from the API and emits the appropriate event
@@ -114,6 +163,13 @@ class Chariot extends api_1.ChariotApi {
                 }
             }
         }
+    }
+    /**
+     * Checks if the code is running in a browser environment
+     */
+    isBrowserEnvironment() {
+        return typeof window !== 'undefined' && typeof window.document !==
+            'undefined';
     }
 }
 exports.Chariot = Chariot;
