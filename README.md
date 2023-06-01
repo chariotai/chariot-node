@@ -27,9 +27,9 @@ console.log(applications);
 Or without ES modules and `async`/`await`:
 
 ```javascript
-const { ChariotApi } = require('chariotai');
+const { Chariot } = require('chariotai');
 
-const chariot = new ChariotApi(process.env.CHARIOT_API_KEY)
+const chariot = new Chariot(process.env.CHARIOT_API_KEY)
 
 chariot.listApplications()
   .then(applications => console.log(applications))
@@ -60,7 +60,7 @@ conversation.on('message', (message: any) => {
 // Includes total token count and sources used by the LLM
 conversation.on('complete', (data: any) => {
   console.log('Streaming completed:', data);
-);
+});
 
 // Triggered when the stream ends (successfuly or not)
 conversation.on('end', () => {
