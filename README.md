@@ -37,7 +37,7 @@ chariot.listApplications()
 ```
 
 # Streaming conversations
-You can use the `streamConversation()` helper to read the server-sent event stream from the Chariot API:
+You can use `streamConversation()` to read the server-sent event stream from the Chariot API:
 
 ```javascript
 import { Chariot } from 'chariotai';
